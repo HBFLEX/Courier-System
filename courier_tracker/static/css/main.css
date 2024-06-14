@@ -1,0 +1,273 @@
+html,
+body,
+:root{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100%;
+    background-image: url('..\\images\\bg1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.main--root{
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    color: white;
+}
+
+.dashboard--menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard--menu{
+    width: 20vw;
+    height: 92vh;
+    background: transparent;
+    backdrop-filter: blur(8px) brightness(0.8);
+    padding: 15px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.dashboard--menu--top .dashboard--menu--logo{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: start;
+    align-items: center;
+}
+
+.dashboard--menu--logo .logo--img{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
+
+.dashboard--menu--logo .logo--title{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.dashboard--menu--link{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 13px;
+}
+
+.link--name--group{
+    width: 300px;
+    text-align: start;
+}
+
+.dashboard--menu--link a{
+    text-decoration: none;
+    color: rgb(43, 195, 201);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.dashboard--content{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    background-color: white;
+    padding: 13px;
+    width: 80vw;
+    border-radius: 14px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.dashboard--content .dashboard--content--title{
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.dashboard--content--analytics .analytics--row{
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+}
+
+.analytics--row .column--md--3{
+    width: 17vw;
+}
+
+.analytics--card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+    gap: 15px;
+}
+
+.analytics--card .analytics--card--top{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+}
+
+.analytics--card .analytics--card--middle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+.analytics--card .analytics--card--middle h4{
+    width: 120px;
+    text-overflow: ellipsis;
+}
+
+.analytics--grows--dark{
+    color: green;
+}
+
+.analytics--grows--light{
+    color: greenyellow;
+}
+
+.analytics--card .analytics--card--bottom{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.dashboard--content--shipments{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin-top: 15px;
+    border: 2px solid rgb(240, 239, 239);
+    width: auto;
+    padding: 10px;
+}
+
+.dashboard--content--shipments--title .shipments--title{
+    color: black;
+}
+
+.shipment--card{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard--content--shipments--cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    gap: 28px;
+}
+
+.dashboard--content--shipments--cards--top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.dashboard--content--shipments--cards--top .left--side{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.dashboard--content--shipments--cards--top .left--side{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+}
+
+.dashboard--content--shipments--cards--top .left--side .shipment--lookup--id{
+    width: 150px;
+}
+
+.dashboard--content--shipments--cards--top .right--side .shipment--card--status{
+    font-size: 12px;
+}
+
+
+.dashboard--content--shipments--cards--middle{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard--content--shipments--cards--middle img{
+    width: 100%;
+    height: 170px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    object-fit: cover;
+}
+
+.dashboard--content--shipments--cards--middle .customer-details{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.customer-details .customer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.customer .customer--column--layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 2px;
+    width: 140px;
+    text-overflow: ellipsis;
+    text-wrap: wrap;
+}
+
+.customer .package--arrival--column--layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 2px; 
+}
+
+.font--bold{
+    font-weight: bold;
+}
+
+.customer--name{
+    font-weight: 400;
+}
+
+.custom--border--thick{
+    border-bottom: 5px solid;
+}
