@@ -88,90 +88,125 @@
             </div>
             <!-- shipment cards -->
             <div class="dashboard--content--shipments--cards">
-                {% for package in packages_traced %}
-                    <div class="bg-secondary shadow-lg p-4 rounded shipment--card">
-                        <!-- top part -->
-                        <div class="dashboard--content--shipments--cards--top">
-                            <!-- left side -->
-                            <div class="left--side">
-                                <p><i class="fa fa-cube"></i></p>
-                                <p class="text-truncate shipment--lookup--id">{{ package.package_id.tracking_id }}</p>
+                {% if packages_traced %}
+                    {% for package in packages_traced %}
+                        <div class="bg-secondary shadow-lg p-4 rounded shipment--card">
+                            <!-- top part -->
+                            <div class="dashboard--content--shipments--cards--top">
+                                <!-- left side -->
+                                <div class="left--side">
+                                    <p><i class="fa fa-cube"></i></p>
+                                    <p class="text-truncate shipment--lookup--id">{{ package.package_id.tracking_id }}</p>
+                                </div>
+                                <!-- right side -->
+                                {% for status in package.status_id.all %}
+                                    {% if status.description == 'Picked Up' %}
+                                        <div class="right--side">
+                                            <p class="bg-danger small p-1 rounded shipment--card--status">{{ status.description }}</p>
+                                        </div>
+                                    {% elif status.description == 'In Transit' %}
+                                        <div class="right--side">
+                                            <p class="bg-warning small p-1 rounded shipment--card--status">{{ status.description }}</p>
+                                        </div>
+                                    {% elif status.description == 'Delivered' %}
+                                        <div class="right--side">
+                                            <p class="bg-success p-1 rounded shipment--card--status">Just {{ status.description }}</p>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
-                            <!-- right side -->
-                             {% for status in package.status_id.all %}
-                                {% if status.description == 'Picked Up' %}
-                                    <div class="right--side">
-                                        <p class="bg-danger small p-1 rounded shipment--card--status">{{ status.description }}</p>
+                            <!-- middle part -->
+                            <div class="dashboard--content--shipments--cards--middle">
+                                <!-- image -->
+                                {% for status in package.status_id.all %}
+                                    {% if status.description == 'Picked Up' %}
+                                        <img class="mb-0 shadow border-danger custom--border--thick" src="{% static 'images/picked_up_courier2.png' %}" />
+                                    {% elif status.description == 'In Transit' %}
+                                        <img class="mb-0 shadow shadow border-warning custom--border--thick" src="{% static 'images/in_transit_courier.png' %}" />
+                                    {% elif status.description == 'Delivered' %}
+                                        <img class="mb-0 shadow shadow border-success custom--border--thick" src="{% static 'images/delivered_courier.png' %}" />
+                                    {% endif %}
+                                {% endfor %}
+                                <!-- customer details -->
+                                <div class="mb-0 customer-details">
+                                    <div class="customer">
+                                        <!-- customer name -->
+                                        <div class="customer--column--layout">
+                                            <p class="text-warning mb-0 font--bold"><small>Customer</small></p>
+                                            {% for customer in package.package_id.sender.all %}
+                                                <p class="mt-0 customer--name">{{ customer.get_full_name }}</p>
+                                            {% endfor %}
+                                        </div>
+                                        <!-- arrival date -->
+                                        <div class="package--arrival--column--layout">
+                                            <p class="text-info mb-0 font--bold"><small>Est. Arrival</small></p>
+                                            <p class="mt-0">21 Aug 2023</p>
+                                        </div>
                                     </div>
-                                {% elif status.description == 'In Transit' %}
-                                    <div class="right--side">
-                                        <p class="bg-warning small p-1 rounded shipment--card--status">{{ status.description }}</p>
-                                    </div>
-                                {% elif status.description == 'Delivered' %}
-                                    <div class="right--side">
-                                        <p class="bg-success p-1 rounded shipment--card--status">{{ status.description }}</p>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                        <!-- middle part -->
-                        <div class="dashboard--content--shipments--cards--middle">
-                            <!-- image -->
-                            {% for status in package.status_id.all %}
-                                {% if status.description == 'Picked Up' %}
-                                    <img class="mb-0 shadow border-danger custom--border--thick" src="{% static 'images/picked_up_courier.png' %}" />
-                                {% elif status.description == 'In Transit' %}
-                                    <img class="mb-0 shadow shadow border-warning custom--border--thick" src="{% static 'images/in_transit_courier.png' %}" />
-                                {% elif status.description == 'Delivered' %}
-                                    <img class="mb-0 shadow shadow border-success custom--border--thick" src="{% static 'images/delivered_courier.png' %}" />
-                                {% endif %}
-                            {% endfor %}
-                            <!-- customer details -->
-                            <div class="mb-0 customer-details">
-                                <div class="customer">
-                                    <!-- customer name -->
-                                    <div class="customer--column--layout">
-                                        <p class="text-warning mb-0 font--bold"><small>Customer</small></p>
-                                        {% for customer in package.package_id.sender.all %}
-                                            <p class="mt-0 customer--name">{{ customer.get_full_name }}</p>
-                                        {% endfor %}
-                                    </div>
-                                    <!-- arrival date -->
-                                    <div class="package--arrival--column--layout">
-                                        <p class="text-info mb-0 font--bold"><small>Est. Arrival</small></p>
-                                        <p class="mt-0">21 Aug 2023</p>
+                                </div>
+                                <hr class="mt-0 mb-0" />
+                                <!-- package details -->
+                                <div class="mt-0 customer-details">
+                                    <div class="ml-0 customer">
+                                        <!-- arrival address -->
+                                        <div class="customer--column--layout">
+                                            <p
+                                                class="text-warning mb-0 font--bold"><small>Arr.
+                                                    Addr</small></p>
+                                            <p class="customer--name">{{ package.package_id.recepient_address }}</p>
+                                        </div>
+                                        <!-- arrival days -->
+                                        <div class="package--arrival--column--layout">
+                                            <p
+                                                class="text-info mb-0 font--bold"><small>Est.
+                                                    Time</small></p>
+                                            <p class="mt-0">{{ package.package_id.estimated_time_arrival }} day(s)</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr class="mt-0 mb-0" />
-                            <!-- package details -->
-                            <div class="mt-0 customer-details">
-                                <div class="ml-0 customer">
-                                    <!-- arrival address -->
-                                    <div class="customer--column--layout">
-                                        <p
-                                            class="text-warning mb-0 font--bold"><small>Arr.
-                                                Addr</small></p>
-                                        <p class="customer--name">{{ package.package_id.recepient_address }}</p>
-                                    </div>
-                                    <!-- arrival days -->
-                                    <div class="package--arrival--column--layout">
-                                        <p
-                                            class="text-info mb-0 font--bold"><small>Est.
-                                                Time</small></p>
-                                        <p class="mt-0">{{ package.package_id.estimated_time_arrival }} day(s)</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- bottom part -->
+                            <a class="btn btn-dark" href="shipments/details/1">Details</a>
                         </div>
-                        <!-- bottom part -->
-                        <a class="btn btn-dark" href="shipments/details/1">Details</a>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <div class="text-danger font-bold">No shipments available at the moment.</div>
+                {% endif %}
             </div>
         </div>
-        <!-- transactions -->
-        <div></div>
+        <!-- customers -->
+        <div class="mt-3 border p-2 dashboard--content--customers">
+            <!-- title or maybe and filters -->
+            <div class="dashboard--content--customer--title">
+                <h5 class="text-dark mb-2 customer--title">Customers</h5>
+                <p class="text-muted mt-0">Recent registered customers</p>
+            </div>
+            <!-- customer cards -->
+             <div class="container table-responsive dashboard--content--customer--cards">
+                <table class="table w-100 table-striped table-secondary table-hover rounded">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Date Joined</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for customer in customers %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ customer.first_name }}</td>
+                            <td>{{ customer.last_name }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.date_joined|date:'Y/m/d' }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+             </div>
+        </div>
     </div>
 </div>
 {% endblock content %}

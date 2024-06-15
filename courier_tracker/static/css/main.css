@@ -173,6 +173,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 8px;
+    height: fit-content;
 }
 
 .dashboard--content--shipments--cards{
@@ -270,4 +271,11 @@ body{
 
 .custom--border--thick{
     border-bottom: 5px solid;
+}
+
+.dashboard--content--customers{
+    display: flex;
+    flex-direction: column;
+    flex-grow: initial;
+    width: 100%;
 }

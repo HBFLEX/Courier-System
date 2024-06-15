@@ -17,7 +17,7 @@ def get_a_few_packages_traced():
 # dashboard page
 def dashboard_page(request):
     total_packages_in_shipment = Package.objects.filter(status_id__description='In Transit').count()
-    total_customers = User.objects.filter(role__description='Customer').count()
+    customers = User.objects.filter(role__description='Customer')[:5]
     total_orders_pending = Package.objects.filter(status_id__description='Ordered').count()
     packages_traced = get_a_few_packages_traced()
     context = {
@@ -26,7 +26,8 @@ def dashboard_page(request):
         'bottom_menu_links': dashboard_links_bottom,
         'analytics_card': analytics_card,
         'shipment_count': total_packages_in_shipment,
-        'total_customers': total_customers,
+        'customers': customers,
+        'total_customers': customers.count(),
         'pending_orders': total_orders_pending,
         'packages_traced': packages_traced,
     }

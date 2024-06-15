@@ -64,7 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     class Meta:
-        ordering = ['email', '-date_joined', '-updated_at']
+        ordering = ['-date_joined', '-updated_at', 'email',]
         verbose_name = 'User'
         verbose_name_plural = 'Users'
 
