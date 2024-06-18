@@ -1,29 +1,29 @@
 {% load static %}
-<!-- dashboard--menu -->
-<div class="dashboard--menu">
-    <!-- top part -->
-    <div class="dashboard--menu--top">
-        <!-- logo     -->
-        <div class="dashboard--menu--logo">
-            <img class="logo--img" src="{% static 'images/logo.png' %}" />
-            <p class="logo--title">Alice Courier</p>
-        </div>
-        {% for link in top_menu_links %}
-        <div class="dashboard--menu--link">
-            <i class="fa {{ link.icon_name }}"></i>
-            <div class="link--name--group">
-                <a href="{{ link.href }}">{{ link.link_name }}</a>
-            </div>
-        </div>
-        {% endfor %}
+<!-- dashboard--m -->
+<div class="sticky-top mt-4 dashboard--menu">
+  <!-- top part -->
+  <div class="dashboard--menu--top">
+    <!-- logo -->
+    <div class="dashboard--menu--logo">
+      <img class="logo--img" src="{% static 'images/logo.png' %}" />
+      <p class="logo--title">Alice <span class="text-warning">Courier</span></p>
     </div>
-    <!-- bottom part -->
-    <div class="dashboard--menu--bottom">
-        {% for link in bottom_menu_links %}
-        <div class="dashboard--menu--link">
-            <i class="fa {{ link.icon_name }}"></i>
-            <a href="{{ link.href }}">{{ link.link_name }}</a>
+    {% for link in top_menu_links %}
+      <div class="dashboard--menu--link">
+        <i class="fa {{ link.icon_name }}"></i>
+        <div class="ml-2 link--name--group">
+          <a href="{{ link.href }}">{{ link.link_name }}</a>
         </div>
-        {% endfor %}
-    </div>
+      </div>
+    {% endfor %}
+  </div>
+  <!-- bottom part -->
+  <div class="dashboard--menu--bottom">
+    {% for link in bottom_menu_links %}
+      <div class="dashboard--menu--link">
+        <i class="fa {{ link.icon_name }} mr-3"></i>
+        <a href="{{ link.href }}">{{ link.link_name }}</a>
+      </div>
+    {% endfor %}
+  </div>
 </div>

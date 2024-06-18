@@ -8,17 +8,12 @@ dashboard_links_top = [
     {
         "icon_name": "fa-truck-fast",
         "link_name": "Shipments",
-        "href": "shipments/",
-    },
-    {
-        "icon_name": "fa-bag-shopping",
-        "link_name": "Orders",
-        "href": "orders/",
+        "href": "?page=shipments",
     },
     {
         "icon_name": "fa-person-circle-plus",
         "link_name": "Customers",
-        "href": "customers/",
+        "href": "?page=customers",
     },
     {
         "icon_name": "fa-warehouse",

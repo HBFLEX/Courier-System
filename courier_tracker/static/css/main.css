@@ -8,7 +8,7 @@ body,
 
 body{
     height: 100%;
-    background-image: url('..\\images\\bg1.jpg');
+    background-image: url('..\\images\\bg2.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -21,6 +21,12 @@ body{
     gap: 2rem;
     color: white;
 }
+
+/* .dashboard--menu--container{
+    display: fixed;
+    position: sticky;
+    top: 600px;
+} */
 
 .dashboard--menu{
     display: flex;
