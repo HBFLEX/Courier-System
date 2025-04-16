@@ -31,7 +31,7 @@ dashboard_links_top = [
 dashboard_links_bottom = [
     {
         "icon_name": "fa-envelope",
-        "link_name": "Notifations",
+        "link_name": "Notifications",
         "href": "notifications/",
     },
     {
